@@ -1,0 +1,25 @@
+<html>
+<head>
+
+</head>
+<body>
+
+<form name = "input" action="../info/" method="post">
+    <p>
+        Username:<br>
+        {{form.fName}}<br>
+    </p>
+    <p>Password: <br>
+	{{form.password}} </p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+

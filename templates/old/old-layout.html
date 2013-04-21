@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<title>Grantrunner</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.js"></script>
+<script type=text/javascript>
+  $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+</script>
+<script src="/static/custom.js" type="text/javascript"></script>
+<script type="text/javascript" language="javascript" src="/static/jquery.dataTables.js"></script>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+	<div id='header'>
+		<ul>
+		<li>
+		{% if request.path == "/" %}
+			Home 
+		{% else %}                   
+			<a href="../">Home</a>
+		{% endif %}
+		</li>         
+	{% if session.user_id %}
+		<li>
+		{% if request.path == "/view/" %}
+			View
+		{% else %}                   
+			<a href="../view">View</a>
+		{% endif %}
+		</li>    
+		<li>
+		{% if request.path == "/results" %}
+			Results
+		{% else %}       
+			<a href="../results">Results</a>
+		{% endif %}
+		</li>    
+		<li>account</li>
+	{% endif %}
+		<li>
+		{% if not session.user_id %}
+			<a href="{{ url_for('signin') }}">log in</a></li>
+			<li><a href="{{ url_for('register') }}">register</a>
+		{% else %}
+			<a href="{{ url_for('logout') }}">log out</a>
+  {% endif %}
+		</li>
+		</ul>
+	</div>
+  
+  <div class=metanav>
+
+  </div>
+  {% for message in get_flashed_messages() %}
+	<div class=flash>{{ message }}</div>
+  {% endfor %}
+<div id = 'content'>
+	{% block body %}{% endblock %}
+
+</div>
+<div id = 'footer'>contact?</div>
+</div>

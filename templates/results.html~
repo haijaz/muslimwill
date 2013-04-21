@@ -1,0 +1,26 @@
+{% extends "layout.html" %}   
+{% block body %}
+<div id = "dates">
+<ul>
+	<li>dates should go here</li>
+</ul>
+</div>
+<div id="results">
+<table id="example" class="pretty">
+	<thead>
+		<tr>
+			<th><aagency</th>
+			<th>title</th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for word in results %}
+		<tr>
+			<td>{{ word.Agency }} </td>
+			<td>{{word.opportunityTitle}}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+</div>
+{% endblock %}

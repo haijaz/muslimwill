@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+	<table>
+	<!-- <a href="../add/">add new keyword</a> -->
+	<a href="../newadd/">add new keyword</a>
+{% for word in checkme %}
+  <tr>
+  <td>{{ word.keyword }}</td>
+  <td><a href="../runit/{{ word.id }}">run</a></td>
+  <td><a href="../delete/{{ word.id }}">delete</a></td>
+  </tr>
+{% endfor %}
+</table>
+{% endblock %}

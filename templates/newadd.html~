@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block body %}
+<form name = "input" action="../newadd/" method="post">
+    {{form.hidden_tag()}}
+    <p>
+        Keyword:<br>
+        {{form.keyword}}<br>
+    </p>
+    <p>Eligibility (hold shift to select multiple entries): <br>
+	{{form.eligibility(size=7)}} </p>
+    <p><input type="submit" value="Save"></p>
+</form>
+
+{% endblock %}

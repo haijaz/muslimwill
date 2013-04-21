@@ -1,0 +1,28 @@
+{% extends "layout.html" %}   
+{% block body %}
+<div id = "dates">
+<ul>
+	<li>dates should go here</li>
+</ul>
+</div>
+<div id="results">
+<table id="example" class="pretty">
+	<thead>
+		<tr>
+			<th><a href="#">agency</a></th>
+			<th><a href="#">title</a></th>
+			<th><a href="#">Number</a></th>
+		</tr>
+	</thead>
+	<tbody>
+	{% for word in results %}
+		<tr>
+			<td>{{ word.Agency }} </td>
+			<td><a href="{{word.link}}">{{word.opportunityTitle}}</a></td>
+			<td>{{word.fundingNumber}}</td>
+		</tr>
+	{% endfor %}
+	</tbody>
+</table>
+</div>
+{% endblock %}

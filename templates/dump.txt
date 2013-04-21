@@ -1,0 +1,17 @@
+<option value="02">City or township governments</option>
+<option value="01">County governments</option>
+<option value="22">For profit organizations other than small businesses</option>
+<option value="05">Independent school districts</option>
+<option value="21">Individuals</option>
+<option value="07">Native American tribal governments (Federally recognized)</option>
+<option value="11">Native American tribal organizations (other than Federally recognized tribal governments)</option>
+<option value="12">Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education</option>
+<option value="13">Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education</option>
+<option value="25">Others (see text field entitled &quot;Additional Information on Eligibility&quot; for clarification)</option>
+<option value="20">Private institutions of higher education</option>
+<option value="06">Public and State controlled institutions of higher education</option>
+<option value="08">Public housing authorities/Indian housing authorities</option>
+<option value="23">Small businesses</option>
+<option value="04">Special district governments</option>
+<option value="00">State governments</option>
+<option value="99">Unrestricted (i.e., open to any type of entity above)</option>

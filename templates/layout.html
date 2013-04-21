@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<title>Grantrunner</title>
+<body>
+
+    <div class="container">
+
+      <div class="masthead">
+        <h3 class="muted">Grant Runner</h3>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <div class="container">
+              <ul class="nav">
+		<li
+		{% if request.path == "/" %}
+			class = "active"><a href="#">Home</a>
+		{% else %}                   
+			class = "inactive"><a href="../">Home</a>
+		{% endif %}
+		</li>         
+	{% if session.user_id %}
+		<li
+		{% if request.path == "/view/" %}
+			class = "active"><a href=#>View</a>
+		{% else %}                   
+			><a href="../view">View</a>
+		{% endif %}
+		</li>    
+		<li
+		{% if request.path == "/results" %}
+			class = "active"><a href=#>Results</a>
+		{% else %}       
+			><a href="../results">Results</a>
+		{% endif %}
+		</li>    
+		<li class="inactive"><a href="#">Account</a></li>
+	{% endif %}
+		<li>
+		{% if not session.user_id %}
+			<a href="{{ url_for('signin') }}">Log In</a></li>
+			<li><a href="{{ url_for('register') }}">Register</a>
+		{% else %}
+			<a href="{{ url_for('logout') }}">Log Out</a>
+  {% endif %}
+		</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- /.navbar -->
+      </div>
+
+      <!-- Jumbotron -->
+	  <div id = 'content'>
+	{% block body %}{% endblock %}
+<hr>
+      <div class="footer">
+        <p>&copy; Company 2013</p>
+      </div>
+</div>
+
+
+    </div>
+	</body>

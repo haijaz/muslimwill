@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<form name = "input" action="../signin/" method="post">
+    {{form.hidden_tag()}}
+    <p>
+        Username:<br>
+        {{form.username}}<br>
+    </p>
+    <p>Password: <br>
+	{{form.password}} </p>
+    <p><input type="submit" value="Sign In"></p>
+</form>
+
+<!-- 
+     <div id="signin-container">
+	 <form class="form-signin" name="input" action="../signin/" method="post">
+        <h2 class="form-signin-heading">Please sign in</h2>
+        <input type="text" class="input-block-level" placeholder="Username" name="username">
+        <input type="password" class="input-block-level" placeholder="Password" name="password">
+<!--        <label class="checkbox">
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>-->
+<!--         <button class="btn btn-large btn-primary" type="submit" value="Submit">Sign in</button>
+      </form>
+		</div> -->
+	  
+ -->
+
+
+
+{% endblock %}
