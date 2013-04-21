@@ -8,9 +8,10 @@
 <script type="text/javascript" src="../static/jquery.form.wizard.js"></script>
 <link href="../static/jquery.jWizard.css" rel="stylesheet">
 </head>
-<body>
-
-{{request.form['fName']}}
+<body>${type(context['form'].numBoys.data)}
+% for a in range(5):
+	${a+1}
+% endfor
 <div>
 <p>lets put some content here</p>
 <p>and some mor eover here</p>

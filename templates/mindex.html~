@@ -1,0 +1,6 @@
+<form name = "input" action="../info/" method="post">
+	${context['form'].fName}
+	${context['form'].lName}
+	${context['form'].numBoys}
+	 <input type="submit" value="Submit">
+</form>

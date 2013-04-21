@@ -10,28 +10,21 @@
 </head>
 <body>
 
+<% s = int(context["form"].numBoys.data)
+%>
 
 <div>
 <p>lets put some content here</p>
 <p>and some mor eover here</p>
 <form name="test" action = "../newwill" id="demoForm">
 
-{% range number from 1 to request.form['fName'] %}
-		{{ number }}
-{% endrange %}
+
 
 <div class = "step" id="step1">
+% for a in range(s):
+	<input type = "text">${a+1}<br>
+% endfor
 
-<input type = "text"> 1 <br>
-<input type = "text"> 2 <br>
-<input type = "text"> 3 <br>
-<input type = "text"> 4 <br>
-</div>
-<div class = "step" id="step2">
-<input type = "text"> 5 <br>
-<input type = "text"> 6 <br>
-<input type = "text"> 7 <br>
-<input type = "text"> 8 <br>
 </div>
 <input type="submit" value="c'mon">
 </form>
