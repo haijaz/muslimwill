@@ -1,0 +1,26 @@
+# import doctest
+# import calculator
+# from calculator import person, testator
+
+
+
+def adder(peopleDict, spouseAlive, motherAlive, fatherAlive, gender):
+    for i, j in peopleDict.iteritems():
+        
+    
+    
+
+    
+
+def main():
+    new = testator()
+    new.initialize()
+    #pass dict e.g., ({"boys": 3, "girls": 2, "sisters": 1}), and parameters (gender, spouseAlive, motherAlive, fatherAlive), loop through dict, set parameters, and then calculate
+    
+#    quickAdd("Female",  "sisters",  numPeople = 5,  numKids = 0) #this can be used to add new people with kids for a test suite
+    values = calculator.calculate(new)    
+
+    assert func(3) is 22 "testcase func failed"
+    
+if( __name__ == "__main__" ):
+    main()

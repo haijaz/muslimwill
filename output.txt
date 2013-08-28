@@ -1,0 +1,64 @@
+if boys is None:
+    self.boys = []
+else:
+    self.boys = boys
+if girls is None:
+    self.girls = []
+else:
+    self.girls = girls
+if father is None:
+    self.father = []
+else:
+    self.father = father
+if mother is None:
+    self.mother = []
+else:
+    self.mother = mother
+if brothers is None:
+    self.brothers = []
+else:
+    self.brothers = brothers
+if sisters is None:
+    self.sisters = []
+else:
+    self.sisters = sisters
+if grandchildren is None:
+    self.grandchildren = []
+else:
+    self.grandchildren = grandchildren
+if gender is None:
+    self.gender = []
+else:
+    self.gender = gender
+if spouse is None:
+    self.spouse = []
+else:
+    self.spouse = spouse
+if eds is None:
+    self.eds = []
+else:
+    self.eds = eds
+if maleEds is None:
+    self.maleEds = []
+else:
+    self.maleEds = maleEds
+if splitChildren is None:
+    self.splitChildren = []
+else:
+    self.splitChildren = splitChildren
+if residue is None:
+    self.residue = []
+else:
+    self.residue = residue
+if fatherAlive is None:
+    self.fatherAlive = []
+else:
+    self.fatherAlive = fatherAlive
+if motherAlive is None:
+    self.motherAlive = []
+else:
+    self.motherAlive = motherAlive
+if spouseAlive is None:
+    self.spouseAlive = []
+else:
+    self.spouseAlive = spouseAlive

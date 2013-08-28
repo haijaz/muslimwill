@@ -6,20 +6,49 @@ from flask.ext.login import LoginManager, login_required, login_user, current_us
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 from flask.ext.wtf import Form, TextField, BooleanField, PasswordField, SelectMultipleField, SelectField, validators, Required
+from flask.ext.fillin import FormWrapper
+from flask.testing import FlaskClient
+from flask_debugtoolbar import DebugToolbarExtension
+
 
 app = Flask(__name__)
+app.debug = True
+
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s\\test2.db' %sys.path[0]
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.setup_app(app)
 app.secret_key = 'aas8df98wf298r2#@#$ASDF'
 
+toolbar = DebugToolbarExtension(app)
+
+
+
+client = FlaskClient(app, response_wrapper=FormWrapper)
+# response = client.get('/testform')
+
+
+
+class formtest(Form):
+    numBoys = TextField('numBoys')
+    numGirls  = TextField('numGirls')
+    numSisters = TextField('numSisters')
+    numBrothers = TextField('numBrothers')
+
+@app.route('/testform/', methods=['GET', 'POST'])
+def testform():
+    form = formtest()
+    if request.method == 'POST':
+        print request
+        # return render_template('testform.html', results = results)
+    return render_template('testform.html', form = form)
+
 # forms
 
 # class LoginForm(Form):
     # username = TextField('username', [Required()])
     # password = PasswordField('password', default = False)
-	
+
 class infoForm(Form):
 	fName= TextField('fName')
 	lName= TextField('lName')
@@ -116,7 +145,9 @@ class infoForm(Form):
 # def load_user(userid):
 	# return User.query.filter_by(id = userid).first()
 		
+
 @app.route('/')
+
 def index():
 	return render_template('index.html')
 
@@ -137,9 +168,16 @@ def index():
 
 
 	
+
+
 def results(request):
 	x=1
 	return x
+
+
+
+
+
 
 
 @app.route('/info/', methods=['GET', 'POST'])
@@ -157,6 +195,9 @@ def info():
 	
 	
 	
+
+
+
 @app.route('/newwill/', methods=['GET', 'POST'])
 def newwill(form):
 	if request.method == 'POST':
@@ -284,6 +325,9 @@ def newwill(form):
 		# db.session.commit()
 		# return redirect(url_for('index'))
 	# return render_template('register.html')
+
+
+
 
 if __name__ == '__main__':
 	app.run(debug = True, host='0.0.0.0', port=81)

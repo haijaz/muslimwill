@@ -6,26 +6,50 @@ from flask.ext.login import LoginManager, login_required, login_user, current_us
 from werkzeug.security import generate_password_hash, check_password_hash
 import datetime
 from flask.ext.wtf import Form, TextField, BooleanField, PasswordField, SelectMultipleField, SelectField, validators, Required
+from flask.ext.fillin import FormWrapper
+from flask.testing import FlaskClient
+from flask_debugtoolbar import DebugToolbarExtension
+
 
 app = Flask(__name__)
+app.debug = true
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///%s\\test2.db' %sys.path[0]
 db = SQLAlchemy(app)
 login_manager = LoginManager()
 login_manager.setup_app(app)
 app.secret_key = 'aas8df98wf298r2#@#$ASDF'
 
+client = FlaskClient(app, response_wrapper=FormWrapper)
+response = client.get('/testform')
+
+
+
+class formtest(Form):
+    numBoys = TextField('numBoys')
+    numGirls  = TextField('numGirls')
+    numSisters = TextField('numSisters')
+    numBrothers = TextField('numBrothers')
+
+@app.route('/testform/', methods=['GET', 'POST'])
+def testform(form):
+    form = formtest
+    if request.method == 'POST':
+        results = calculate(request)
+        return render_template('testform.html', results = results)
+    checkmate = Thinger + 5
+    return render_template('testform.html', form)
+
 # forms
 
-class LoginForm(Form):
-    username = TextField('username', [Required()])
-    password = PasswordField('password', default = False)
+# class LoginForm(Form):
+    # username = TextField('username', [Required()])
+    # password = PasswordField('password', default = False)
 	
-# class SearchForm(Form):
-	# length = TextField('length')
-	# keyword = TextField('keyword', validators = [Required(message='must submit')])
-
-#eligibility = SelectMultipleField('eligibility', choices =[('*', 'All Eligibility Types'), ('02', 'City or township governments'),('01', 'County governments'),('22', 'For profit organizations other than small businesses'),('05', 'Independent school districts'),('21', 'Individuals'),('07', 'Native American tribal governments (Federally recognized)'),('11', 'Native American tribal organizations (other than Federally recognized tribal governments)'),('12', 'Nonprofits having a 501(c)(3) status with the IRS, other than institutions of higher education'),('13', 'Nonprofits that do not have a 501(c)(3) status with the IRS, other than institutions of higher education'),('25', 'Others (see text field entitled &quot;Additional Information on Eligibility&quot; for clarification)'),('20', 'Private institutions of higher education'),('06', 'Public and State controlled institutions of higher education'),('08', 'Public housing authorities/Indian housing authorities'),('23', 'Small businesses'),('04', 'Special district governments'),('00', 'State governments'),('99', 'Unrestricted (i.e., open to any type of entity above)')
-														# ])
+class infoForm(Form):
+	fName= TextField('fName')
+	lName= TextField('lName')
+	numBoys = TextField('numBoys')
+	numGirls= TextField('numGirls')
 
 # class User(db.Model):
 	# id = db.Column(db.Integer, primary_key=True)
@@ -117,7 +141,9 @@ class LoginForm(Form):
 # def load_user(userid):
 	# return User.query.filter_by(id = userid).first()
 		
+
 @app.route('/')
+
 def index():
 	return render_template('index.html')
 
@@ -138,32 +164,42 @@ def index():
 
 
 	
+
+
 def results(request):
 	x=1
 	return x
 
 
+
+
+
+
+
 @app.route('/info/', methods=['GET', 'POST'])
-@login_required
+# @login_required
 def info():
-	form = infoF(request.form)
-	if request.method == 'POST' and form.validate():
-		new_keyword = Search(request.form['keyword'], session["user_id"])
-		db.session.add(new_keyword)
-		db.session.commit()
-		flash('Thanks for registering')
-		return redirect(url_for('index'))
-	return render_template('newadd.html', form = form)
+	form = infoForm(request.form)
+	if request.method == 'POST':
+		# new_keyword = Search(request.form['keyword'], session["user_id"])
+		# db.session.add(new_keyword)
+		# db.session.commit()
+		# flash('Thanks for registering')
+		return render_template('newwill.html', form = form)
+	return render_template('info.html', form = form)
 	
 	
 	
 	
+
+
+
 @app.route('/newwill/', methods=['GET', 'POST'])
-def newwill():
+def newwill(form):
 	if request.method == 'POST':
 		results = calculate(request)
 		return render_template('results.html', results = results)
-	return render_template('newwill.html')
+	return render_template('newwill.html', form)
 	
 	
 # @app.route('/newadd/', methods=['GET', 'POST'])
@@ -285,6 +321,9 @@ def newwill():
 		# db.session.commit()
 		# return redirect(url_for('index'))
 	# return render_template('register.html')
+
+
+
 
 if __name__ == '__main__':
 	app.run(debug = True, host='0.0.0.0', port=81)

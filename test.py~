@@ -1,0 +1,60 @@
+import calculator
+from calculator import person, testator
+import testcases
+def initialize(new):
+# add relatives and spouse
+    new.gender = "Female"
+    new.residue = 1
+    spouse = person(name = "spouse", gender = "Female",  alive="Yes",  children="")
+    new.spouseAlive = True
+    new.spouse = spouse
+    new.fatherAlive = True
+    for i in range(2):
+        new.addRelation({'name': 'Bob', 'gender': 'Male', 'alive': 'yes'}, "boys")
+    for i in range(1):
+        new.addRelation({'name': 'Babs', 'gender': 'Female', 'alive': 'yes'}, "girls")
+    bro = person(name='bro',  gender = 'Male', alive ='yes', children = [])
+    kid1 = person(name="test",  gender="Male",  alive="yes",  children = [])
+    new.addRelation(bro,  "brothers")
+    new.addRelation({'name': 'Bob', 'gender': 'Male', 'alive': 'yes'},  "brothers")
+    new.brothers[0].children.append(kid1)
+
+def quickAdd(new, gender,  relationship,  numPeople,  numKids):
+    relation= person(name='bro',  gender = gender, alive ='yes', children = [])
+    new.addRelation(relation,  relationship)
+    for i in range(numPeople-1):
+        if numKids != 0:
+            for i in range(numKids - 1):
+                kid1 = person(name="test",  gender="Male",  alive="yes",  children = [])
+                relation.children.append(kid1)
+        new.addRelation(relation,  relationship)
+    return new
+
+def calculate(new):
+    values = {}
+    newCalc = calculator
+    newCalc.calcEds(new)
+
+    values["spShare"]= round(newCalc.calcSpouse(new), 2)
+    values["mShare"] = newCalc.calcMother(new)
+    values["fShare"] = newCalc.calcFather(new)
+    values["dShare"] = newCalc.calcDaughters(new)
+    for i, j in values.iteritems():
+        new.residue = new.residue - j
+    print new.residue
+
+    values["sShare"], values["dShare"] = newCalc.calcSons(new)
+
+    return values
+    breakme
+
+def main():
+#    initialize
+    new = testator()
+    initialize(new)
+#    quickAdd(new,  "Female",  "sisters",  numPeople = 5,  numKids = 0) #this can be used to add new people for a test suite
+    values = calculate(new)
+    
+if( __name__ == "__main__" ):
+    main()
+
